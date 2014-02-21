@@ -44,11 +44,17 @@ public class SocketServer extends WebSocketServer {
         System.out.println("received message from " + conn.getRemoteSocketAddress() + ": " + message);
         JSONObject event = new JSONObject(message);
 
-        if(event.getString("event").equals("register")) {
-            synchronized ( connections ) {
-                clients.put(event.getJSONObject("content").getString("name"), conn);
+        if(event.getString("event").equals("login")) {
+            if(event.getJSONObject("content").getString("account").equals("studymaster") && event.getJSONObject("content").getString("password").equals("e807f1fcf82d132f9bb018ca6738a19f")) {
+                JSONObject eventb = new JSONObject();
+                JSONObject msgb = new JSONObject();
+                msgb.put("status", "success");
+                eventb.put("event", "login");
+                eventb.put("content", msgb);
+                conn.send(eventb.toString());
+                return;
             }
-            conn.send("registered");
+            conn.send("error");
         }
         else if(event.getString("event").equals("talk")) {
             WebSocket receiver = clients.get(event.getJSONObject("content").getString("receiver"));
