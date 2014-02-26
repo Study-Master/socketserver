@@ -42,27 +42,30 @@ public class SocketServer extends WebSocketServer {
     @Override
     public void onMessage(WebSocket conn, String message) {
         System.out.println("received message from " + conn.getRemoteSocketAddress() + ": " + message);
-        JSONObject event = new JSONObject(message);
 
-        if(event.getString("event").equals("login")) {
-            if(event.getJSONObject("content").getString("account").equals("studymaster") && event.getJSONObject("content").getString("password").equals("e807f1fcf82d132f9bb018ca6738a19f")) {
-                JSONObject eventb = new JSONObject();
-                JSONObject msgb = new JSONObject();
-                msgb.put("status", "success");
-                eventb.put("event", "login");
-                eventb.put("content", msgb);
-                conn.send(eventb.toString());
-                return;
+        JSONObject msg = new JSONObject(message);
+        String event = msg.getString("event");
+        String endpoint = msg.getString("endpoint");
+        JSONObject content = msg.getJSONObject("content");
+
+        JSONObject reMsg = new JSONObject();
+        JSONObject reContent = new JSONObject();
+        reMsg.put("event", event);
+        reMsg.put("endpoint", "Server");
+        reMsg.put("content", reContent);
+
+        if(event.equals("login")) {
+            if(content.getString("account").equals("studymaster") && content.getString("password").equals("e807f1fcf82d132f9bb018ca6738a19f")) {
+                reContent.put("status", "success");
             }
-            conn.send("error");
+            else {
+                reContent.put("status", "failed");
+                reContent.put("code", "0");
+                reContent.put("reason", "Account or Password is wrong.");
+            }
         }
-        else if(event.getString("event").equals("talk")) {
-            WebSocket receiver = clients.get(event.getJSONObject("content").getString("receiver"));
-            if(receiver==null)
-                conn.send("No such client.");
-            else
-                receiver.send(event.getJSONObject("content").getString("text"));
-        }
+
+        conn.send(reMsg.toString());
     }
 
     @Override
