@@ -70,12 +70,16 @@ public class SocketServer extends WebSocketServer {
 
         else if(event.equals("profile")) {
             reContent.put("account", "studymaster");
+            JSONObject profile = new JSONObject();
+
             Set<JSONObject> coursesSet = new HashSet();
             JSONObject course = new JSONObject();
             course.put("code", "CZ2001");
             course.put("name", "Shit Course");
             coursesSet.add(course);
-            reContent.put("courses", coursesSet);
+            profile.put("courses", coursesSet);
+
+            reContent.put("profile", profile);
         }
 
         conn.send(reMsg.toString());
