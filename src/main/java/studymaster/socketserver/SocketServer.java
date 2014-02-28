@@ -3,7 +3,10 @@ package studymaster.socketserver;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -63,6 +66,16 @@ public class SocketServer extends WebSocketServer {
                 reContent.put("code", "0");
                 reContent.put("reason", "Account or Password is wrong.");
             }
+        }
+
+        else if(event.equals("profile")) {
+            reContent.put("account", "studymaster");
+            Set<JSONObject> coursesSet = new HashSet();
+            JSONObject course = new JSONObject();
+            course.put("code", "CZ2001");
+            course.put("name", "Shit Course");
+            coursesSet.add(course);
+            reContent.put("courses", coursesSet);
         }
 
         conn.send(reMsg.toString());
