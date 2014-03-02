@@ -3,7 +3,10 @@ package studymaster.socketserver;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
@@ -25,7 +28,7 @@ public class SocketServer extends WebSocketServer {
 	public SocketServer(InetSocketAddress address) {
         super(address);
         clients = new HashMap<String, WebSocket>();
-        System.out.println("Start server on " + address.getHostString() + " port " + address.getPort());
+        System.out.println("Start server on " + address.getAddress() + " port " + address.getPort());
     }
 
     @Override
@@ -63,6 +66,29 @@ public class SocketServer extends WebSocketServer {
                 reContent.put("code", "0");
                 reContent.put("reason", "Account or Password is wrong.");
             }
+        }
+
+        else if(event.equals("profile")) {
+            reContent.put("account", "studymaster");
+            JSONObject profile = new JSONObject();
+
+            Set<JSONObject> coursesSet = new HashSet();
+            JSONObject course = new JSONObject();
+            course.put("code", "CZ2001");
+            course.put("name", "Algorithms*");
+            course.put("examTime", "");
+            course.put("status", "book");
+            coursesSet.add(course);
+            JSONObject course2 = new JSONObject();
+            course2.put("code", "CZ2002");
+            course2.put("name", "Object Oriented Design & Programming.");
+            course2.put("examTime", "");
+            course2.put("status", "book");
+            coursesSet.add(course2);
+
+            profile.put("courses", coursesSet);
+
+            reContent.put("profile", profile);
         }
 
         conn.send(reMsg.toString());
