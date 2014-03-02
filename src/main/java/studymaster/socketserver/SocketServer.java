@@ -58,7 +58,7 @@ public class SocketServer extends WebSocketServer {
         reMsg.put("content", reContent);
 
         if(event.equals("login")) {
-            if(content.getString("account").equals("studymaster") && content.getString("password").equals("e807f1fcf82d132f9bb018ca6738a19f")) {
+            if(content.getString("account").equals("s") && content.getString("password").equals("c4ca4238a0b923820dcc509a6f75849b")) {
                 reContent.put("status", "success");
             }
             else {
