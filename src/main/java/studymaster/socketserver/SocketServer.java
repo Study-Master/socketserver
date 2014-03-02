@@ -28,7 +28,7 @@ public class SocketServer extends WebSocketServer {
 	public SocketServer(InetSocketAddress address) {
         super(address);
         clients = new HashMap<String, WebSocket>();
-        System.out.println("Start server on " + address.getHostString() + " port " + address.getPort());
+        System.out.println("Start server on " + address.getAddress() + " port " + address.getPort());
     }
 
     @Override
