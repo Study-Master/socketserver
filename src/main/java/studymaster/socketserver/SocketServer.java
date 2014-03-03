@@ -76,15 +76,27 @@ public class SocketServer extends WebSocketServer {
             JSONObject course = new JSONObject();
             course.put("code", "CZ2001");
             course.put("name", "Algorithms*");
-            course.put("examTime", "");
-            course.put("status", "book");
+            course.put("start_time", "");
+            course.put("status", "unbooked");
             coursesSet.add(course);
             JSONObject course2 = new JSONObject();
             course2.put("code", "CZ2002");
             course2.put("name", "Object Oriented Design & Programming.");
-            course2.put("examTime", "");
-            course2.put("status", "book");
+            course2.put("start_time", "");
+            course2.put("status", "unbooked");
             coursesSet.add(course2);
+            JSONObject course3 = new JSONObject();
+            course3.put("code", "CZ2006");
+            course3.put("name", "Software Engineering!");
+            course3.put("start_time", "2014/03/05 00:00:00");
+            course3.put("status", "booked");
+            coursesSet.add(course3);
+            JSONObject course4 = new JSONObject();
+            course4.put("code", "CZ2004");
+            course4.put("name", "Human Computer Interactive@ @");
+            course4.put("start_time", "2014/03/09 00:00:00");
+            course4.put("status", "booked");
+            coursesSet.add(course4);
 
             profile.put("courses", coursesSet);
 
