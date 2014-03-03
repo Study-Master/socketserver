@@ -91,6 +91,10 @@ public class SocketServer extends WebSocketServer {
             reContent.put("profile", profile);
         }
 
+        else if(event.equals("auth")) {
+            reContent.put("nothing", "nothing");
+        }
+
         conn.send(reMsg.toString());
     }
 
