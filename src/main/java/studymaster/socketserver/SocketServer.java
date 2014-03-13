@@ -105,21 +105,21 @@ public class SocketServer extends WebSocketServer {
 
         else if(event.equals("exam_question")) {
             reContent.put("course_code", "CZ0001");
-            JSONObject question_set = new JSONObject();
 
+            JSONObject question_set = new JSONObject();
             Set<JSONObject> question_set = new HashSet();
 
             JSONObject question1 = new JSONObject();
             question1.put("question_type", "short_answer_question");
             JSONObject question_content = new JSONObject();
             question_content.put("question_description", "What is the name of this course?");
-            question1.put("question_content", question_description);
+            question1.put("question_content", question_content);
             question_set.add(question1);
 
             JSONObject question2 = new JSONObject();
             question2.put("question_type", "multiple_choice_question");
-            JSONObject question_description = new JSONObject();
-            question_description.put("How much do you like this course?");
+            JSONObject question_content = new JSONObject();
+            question_content.put("question_description", "How much do you like this course?");
             question2.put("question_description", question_description);
             JSONObject choices = new JSONObject();
             Set<JSONObject> choices = new HashSet();
@@ -130,9 +130,7 @@ public class SocketServer extends WebSocketServer {
             question2.put("question_content", question_content);
             question_set.add(question2);
 
-            exam_question.put("", );
-
-            reContent.put("exam_question", exam_question);
+            reContent.put("question_set", question_set);
 
         }
 
