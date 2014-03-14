@@ -94,7 +94,7 @@ public class SocketServer extends WebSocketServer {
             JSONObject course4 = new JSONObject();
             course4.put("code", "CZ2004");
             course4.put("name", "Human Computer Interactive@ @");
-            course4.put("start_time", "2014/03/14 20:03:30");
+            course4.put("start_time", "2014/03/14 21:34:30");
             course4.put("status", "booked");
             coursesSet.add(course4);
 
@@ -103,36 +103,36 @@ public class SocketServer extends WebSocketServer {
             reContent.put("profile", profile);
         }
 
-        else if(event.equals("exam_question")) {
-            reContent.put("course_code", "CZ0001");
+        // else if(event.equals("exam_question")) {
+        //     reContent.put("course_code", "CZ0001");
 
-            JSONObject question_set = new JSONObject();
-            Set<JSONObject> question_set = new HashSet();
+        //     JSONObject question_set = new JSONObject();
+        //     Set<JSONObject> question_set = new HashSet();
 
-            JSONObject question1 = new JSONObject();
-            question1.put("question_type", "short_answer_question");
-            JSONObject question_content = new JSONObject();
-            question_content.put("question_description", "What is the name of this course?");
-            question1.put("question_content", question_content);
-            question_set.add(question1);
+        //     JSONObject question1 = new JSONObject();
+        //     question1.put("question_type", "short_answer_question");
+        //     JSONObject question_content = new JSONObject();
+        //     question_content.put("question_description", "What is the name of this course?");
+        //     question1.put("question_content", question_content);
+        //     question_set.add(question1);
 
-            JSONObject question2 = new JSONObject();
-            question2.put("question_type", "multiple_choice_question");
-            JSONObject question_content = new JSONObject();
-            question_content.put("question_description", "How much do you like this course?");
-            question2.put("question_description", question_description);
-            JSONObject choices = new JSONObject();
-            Set<JSONObject> choices = new HashSet();
-            choices.add("Not at all");
-            choices.add("So so");
-            choices.add("Very much");
-            question_content.put("choices", choices);
-            question2.put("question_content", question_content);
-            question_set.add(question2);
+        //     JSONObject question2 = new JSONObject();
+        //     question2.put("question_type", "multiple_choice_question");
+        //     JSONObject question_content = new JSONObject();
+        //     question_content.put("question_description", "How much do you like this course?");
+        //     question2.put("question_description", question_description);
+        //     JSONObject choices = new JSONObject();
+        //     Set<JSONObject> choices = new HashSet();
+        //     choices.add("Not at all");
+        //     choices.add("So so");
+        //     choices.add("Very much");
+        //     question_content.put("choices", choices);
+        //     question2.put("question_content", question_content);
+        //     question_set.add(question2);
 
-            reContent.put("question_set", question_set);
+        //     reContent.put("question_set", question_set);
 
-        }
+        // }
 
         else if(event.equals("auth")) {
             reContent.put("nothing", "nothing");
